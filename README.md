@@ -39,15 +39,30 @@ uv run download_hindi.py              # 4 shards (~1.4 GB, recommended)
 uv run download_hindi.py --shards 6  # all 6 shards (~2.1 GB)
 ```
 
-### 3. Prepare data and train tokenizer
+### 3. Adapt `prepare.py` for Hindi
 
-After downloading, update `prepare.py` with the shard counts printed by `download_hindi.py`, then:
+The original `autoresearch` is built for a massive English dataset (`karpathy/climbmix-400b-shuffle`, ~6500 shards). To use Hindi data instead, only **3 constants** near the top of `prepare.py` need to change:
+
+```python
+# Original (English)         →  Hindi (4 shards downloaded)
+MAX_SHARD  = 6542            →  MAX_SHARD  = 3   # shards 0–2 = train, 3 = val
+VAL_SHARD  = MAX_SHARD       →  VAL_SHARD  = MAX_SHARD
+VOCAB_SIZE = 8192            →  VOCAB_SIZE = 16384
+```
+
+**Why these changes:**
+- `MAX_SHARD` / `VAL_SHARD` — set to match the shards you downloaded. The last shard is always pinned as validation; the rest are training.
+- `VOCAB_SIZE` doubled to `16384` — Hindi (Devanagari) has a larger character set than English. A bigger BPE vocabulary gives the tokenizer enough room to learn meaningful Hindi subword units rather than falling back to individual characters.
+
+Everything else in `prepare.py` — the BPE tokenizer training, best-fit document packing, and `evaluate_bpb` harness — is completely language-agnostic and works unchanged on Hindi text. The `download_hindi.py` script prints the exact values to paste after it finishes.
+
+### 4. Train tokenizer and prepare cache
 
 ```bash
 uv run prepare.py
 ```
 
-This downloads data shards and trains a 16k BPE tokenizer. Everything is cached in `~/.cache/autoresearch/`.
+Trains a BPE tokenizer on the Hindi shards and caches everything in `~/.cache/autoresearch/`. Only needs to run once.
 
 ### 4. Run training
 
