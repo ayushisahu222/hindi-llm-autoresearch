@@ -5,3 +5,4 @@ edd4c49	0.887435	8.4	keep	halve total batch size to 2^15 more grad steps
 317acdd	0.815177	8.4	keep	batch size 2^14 even more grad steps
 001bab3	0.781164	4.4	keep	batch size 2^13 device_batch=4
 a94c3da	0.771707	4.4	keep	EMBEDDING_LR 0.6->0.9 faster embed updates
+899d588	0.770050	4.4	keep	MATRIX_LR 0.04->0.03 lower with emb=0.9
