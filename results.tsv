@@ -7,3 +7,4 @@ edd4c49	0.887435	8.4	keep	halve total batch size to 2^15 more grad steps
 a94c3da	0.771707	4.4	keep	EMBEDDING_LR 0.6->0.9 faster embed updates
 899d588	0.770050	4.4	keep	MATRIX_LR 0.04->0.03 lower with emb=0.9
 25fbf1e	0.753467	4.4	keep	MATRIX_LR 0.03->0.02 push lower
+85a5548	0.748388	4.4	keep	MATRIX_LR 0.02->0.01 push lower
