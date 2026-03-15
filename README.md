@@ -15,7 +15,6 @@ Trains a small GPT-style language model on Hindi text ([ai4bharat/sangraha](http
 The experiment loop is designed to be fully autonomous: make a change to `train.py`, run it, record the result, keep or discard, repeat. An AI agent can run this loop indefinitely while you're away.
 
 ---
-
 ## Requirements
 
 - Apple Silicon Mac (M1/M2/M3/M4)
