@@ -1,2 +1,4 @@
 commit	val_bpb	memory_gb	status	description
 be246bf	1.230778	8.5	keep	baseline - Hindi 4-shard vocab16k depth4
+778b289	1.264301	11.8	discard	depth 4->6 more capacity same budget
+edd4c49	0.887435	8.4	keep	halve total batch size to 2^15 more grad steps
